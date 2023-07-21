@@ -1,0 +1,232 @@
+{% load static %}
+{% load socialaccount %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+        <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+   <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4070f403;
+}
+.wrapper{
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  padding: 34px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+.wrapper h2{
+  position: relative;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+.wrapper h2::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 28px;
+  border-radius: 12px;
+  background: #4070f4;
+}
+.wrapper form{
+  margin-top: 30px;
+}
+.wrapper form .input-box{
+  height: 52px;
+  margin: 18px 0;
+}
+form .input-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding: 0 15px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  border: 1.5px solid #C7BEBE;
+  border-bottom-width: 2.5px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.input-box input:focus,
+.input-box input:valid{
+  border-color: #4070f4;
+}
+form .policy{
+  display: flex;
+  align-items: right;
+}
+form h3{
+  color: #707070;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.input-box.button input{
+  color: #fff;
+  letter-spacing: 1px;
+  border: none;
+  background: #4070f4;
+  cursor: pointer;
+}
+.input-box.button input:hover{
+  background: #0e4bf1;
+}
+form .text h3{
+ color: #333;
+ width: 100%;
+ text-align: center;
+}
+form .text h3 a{
+  color: #4070f4;
+  text-decoration: none;
+}
+form .text h3 a:hover{
+  text-decoration: underline;
+}
+.float-left{
+  display: flex;
+  margin-left: 63%;
+  text-decoration:none;
+  color: #0e4bf1
+}
+float-left:hover{
+color: #0e4bf1;
+}
+.fa-google {
+  background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+}
+
+
+
+
+
+.box {
+    width: 430px;
+    height: 40px;
+    outline: none;
+    padding: 0 15px;
+    color: #333;
+    border: 1px solid #C7BEBE;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    background-color: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 465px;
+    margin-left: -429px;
+}
+
+.fab.fa-google {
+     color: #fff;
+    font-size: 24px;
+
+}
+
+    </style>
+
+<script>
+    setTimeout(function(){
+        $('#message').fadeOut('slow');
+
+    }, 4000);
+</script>
+
+
+</head>
+
+
+<body class="bdy">
+
+<div class="wrapper">
+
+    <h2>Login</h2>
+        {% if messages %}
+    {% for message in messages %}
+        <div id="message" class="container">
+            <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error&nbsp;: {% endif %}
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+
+{% endif %}
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="input-box">
+            <input type="text" placeholder="Enter your Email Address" name="email" required>
+        </div>
+        <div class="input-box">
+            <input type="text" placeholder="Enter your Password" name="password" required>
+        </div>
+        <div class="policy">
+
+            <a href="" class="float-left">Forgot password</a>
+        </div>
+        <div class="input-box button">
+            <input type="Submit" value="Login Now">
+        </div>
+        <div class="text">
+            <h3>You have no account? <a href="{% url 'register' %}">Register now</a></h3>
+        </div>
+    </form>
+
+</div>
+
+
+
+ <div class="box">
+
+  <i class="fab fa-google"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <a style="color:gray; text-decoration:none;" href="{% provider_login_url 'google'%}?next=/">Login with Google</a>
+</div>
+
+</body>
+</html>
+
+
+
